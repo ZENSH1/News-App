@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651839082771",
+    "project_id": "allfbneeds",
+    "storage_bucket": "allfbneeds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651839082771:android:a1a7ffa11c0681d34d8ae6",
+        "android_client_info": {
+          "package_name": "com.xs.firenotesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651839082771-g0vecam2nou2rcrpfpuldjthjj90l3n4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1rn8Pnz1UQcW4D-fXMq-xa8u1ZfmORa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651839082771-g0vecam2nou2rcrpfpuldjthjj90l3n4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
