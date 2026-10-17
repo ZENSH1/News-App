@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">News App</string>
+
+    <!-- Login -->
+    <string name="login_title">Welcome back!</string>
+    <string name="login_subtitle">Log in to read and post the latest news.</string>
+    <string name="login_button">Log in</string>
+    <string name="no_account_sign_up">Don\'t have an account? Sign up</string>
+    <!-- Shown under the login form. Empty in prod; the mock flavor shows demo credentials. -->
+    <string name="login_hint" translatable="false" />
+
+    <!-- Sign up -->
+    <string name="sign_up_title">Create an account</string>
+    <string name="sign_up_subtitle">Fill in your details below to start posting news.</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="have_account_log_in">Already have an account? Log in</string>
+
+    <!-- Form fields -->
+    <string name="field_name">Name</string>
+    <string name="field_email">Email</string>
+    <string name="field_password">Password</string>
+    <string name="field_confirm_password">Confirm password</string>
+    <string name="field_age">Age</string>
+    <string name="field_headline">Headline</string>
+    <string name="field_description">Story</string>
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+
+    <!-- Validation errors -->
+    <string name="error_email_invalid">That doesn\'t look like an email address.</string>
+    <plurals name="error_password_too_short">
+        <item quantity="one">Use at least %1$d character.</item>
+        <item quantity="other">Use at least %1$d characters.</item>
+    </plurals>
+    <string name="error_password_mismatch">Passwords don\'t match.</string>
+    <string name="error_age_invalid">Enter an age in the range %1$d–%2$d.</string>
+    <string name="error_required">This field is required.</string>
+    <plurals name="error_too_long">
+        <item quantity="one">Keep it to %1$d character or fewer.</item>
+        <item quantity="other">Keep it to %1$d characters or fewer.</item>
+    </plurals>
+
+    <!-- Backend errors -->
+    <string name="error_invalid_credentials">Wrong email or password.</string>
+    <string name="error_email_in_use">An account with this email already exists.</string>
+    <string name="error_weak_password">That password is too weak.</string>
+    <string name="error_network">No connection. Check your internet and try again.</string>
+    <string name="error_permission_denied">You don\'t have permission to do that.</string>
+    <string name="error_not_found">It no longer exists.</string>
+    <string name="error_unknown">Something went wrong. Please try again.</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_feed">News</string>
+    <string name="tab_publish">Post</string>
+    <string name="tab_profile">Profile</string>
+
+    <!-- Feed -->
+    <string name="feed_title">Latest news</string>
+    <string name="feed_empty">No news yet. Be the first to post a story!</string>
+    <string name="retry">Retry</string>
+    <string name="article_byline">By %1$s</string>
+
+    <!-- Publish -->
+    <string name="publish_title">Post news</string>
+    <string name="publish_button">Publish</string>
+    <string name="publish_success">Your story is live.</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_role">Account type: %1$s</string>
+    <string name="profile_age">Age: %1$d</string>
+    <string name="profile_posts">Posts: %1$d</string>
+    <string name="profile_your_posts">Your posts</string>
+    <string name="profile_no_posts">You haven\'t posted anything yet.</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="sign_out">Log out</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_article_title">Delete this story?</string>
+    <string name="delete_article_message">“%1$s” will be removed for everyone.</string>
+    <string name="article_deleted">Story deleted.</string>
+
+    <!-- Edit profile -->
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="save">Save</string>
+    <string name="navigate_back">Back</string>
+</resources>
