@@ -6,7 +6,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** A reducer is a pure function: no coroutines, fakes or Android needed to test it. */
+/** Pure function: no coroutines or fakes needed. */
 class LoginReducerTest {
 
     @Test

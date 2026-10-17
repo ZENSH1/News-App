@@ -10,12 +10,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.xs.newsapp.feature.login.LoginScreen
 import com.xs.newsapp.feature.signup.SignUpScreen
 
-/**
- * The logged-out flow: Login, with Sign up pushed on top.
- *
- * There is no "go to the feed after login" here. Signing in changes the session, and the app shell
- * swaps this whole flow for [MainNavigation]. The login screen doesn't need to know what comes next.
- */
+/** Logged-out flow. After sign-in the app shell swaps it for [MainNavigation]. */
 @Composable
 fun AuthNavigation(modifier: Modifier = Modifier) {
     val backStack = rememberNavBackStack(LoginRoute)
@@ -25,7 +20,7 @@ fun AuthNavigation(modifier: Modifier = Modifier) {
         onBack = { backStack.removeLastOrNull() },
         entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
-            // Each screen gets its own store, cleared when the screen is popped.
+            // A ViewModel store per screen, cleared on pop.
             rememberViewModelStoreNavEntryDecorator(),
         ),
         entryProvider = entryProvider {

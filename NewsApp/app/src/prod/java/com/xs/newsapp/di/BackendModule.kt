@@ -15,7 +15,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-/** `prod` flavor: the stores talk to Firebase Authentication and Cloud Firestore. */
+/** `prod` flavor: Firebase. */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class BackendModule {

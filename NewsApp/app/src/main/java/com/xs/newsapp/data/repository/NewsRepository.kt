@@ -5,10 +5,10 @@ import com.xs.newsapp.data.model.BackendException
 import com.xs.newsapp.data.model.User
 import kotlinx.coroutines.flow.Flow
 
-/** News stories. Suspend functions are main-safe and only throw [BackendException]. */
+/** Main-safe; throws only [BackendException]. */
 interface NewsRepository {
 
-    /** Every story, newest first, updated in real time. Fails with [BackendException]. */
+    /** Newest first, live. */
     fun observeArticles(): Flow<List<Article>>
 
     suspend fun publish(headline: String, description: String, author: User)

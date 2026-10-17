@@ -17,12 +17,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.runtime.serialization.NavKeySerializer
 import androidx.savedstate.compose.serialization.serializers.MutableStateSerializer
 
-/**
- * Creates the logged-in navigation state: one back stack per tab plus the selected tab.
- * Everything is saved, so it survives configuration changes and process death.
- *
- * Adapted from the Navigation 3 "multiple back stacks" recipe (android/skills `navigation-3`).
- */
+/** One saved back stack per tab plus the selected tab (Navigation 3 "multiple back stacks" recipe). */
 @Composable
 fun rememberNavigationState(
     startRoute: NavKey,
@@ -41,25 +36,15 @@ fun rememberNavigationState(
     }
 }
 
-/**
- * State holder for the tabbed navigation. [Navigator] changes it; `NavDisplay` renders it.
- * (Unidirectional data flow applies to navigation too.)
- */
+/** Tab navigation state. [Navigator] changes it; `NavDisplay` renders it. */
 class NavigationState(
     val startRoute: NavKey,
     topLevelRoute: MutableState<NavKey>,
     val backStacks: Map<NavKey, NavBackStack<NavKey>>,
 ) {
-    /** The selected tab. */
     var topLevelRoute: NavKey by topLevelRoute
 
-    /**
-     * The entries to display: the start tab's stack, plus the selected tab's stack on top of it
-     * ("exit through home": Back from another tab returns to the start tab before leaving the app).
-     *
-     * Every entry is decorated with a saveable-state holder and its own ViewModelStore, so each
-     * screen gets its own store (MVI ViewModel), cleared when the screen is popped.
-     */
+    /** The start tab's stack, plus the selected tab's on top, so Back exits through the start tab. */
     @Composable
     fun toDecoratedEntries(entryProvider: (NavKey) -> NavEntry<NavKey>): List<NavEntry<NavKey>> {
         val decoratedEntries = backStacks.mapValues { (_, stack) ->

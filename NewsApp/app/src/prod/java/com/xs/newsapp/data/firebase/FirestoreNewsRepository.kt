@@ -12,12 +12,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-/**
- * `prod` flavor: the "News" collection in Cloud Firestore.
- *
- * Field names match the documents written by earlier versions of the app (`headline`, `author`,
- * `userID`, …). `publishedAt` is new; older stories without it sort last.
- */
+/** Firestore "News". Field names match older app versions; stories without `publishedAt` sort last. */
 class FirestoreNewsRepository @Inject constructor(
     private val firestore: FirebaseFirestore,
 ) : NewsRepository {

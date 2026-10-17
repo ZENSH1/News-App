@@ -23,7 +23,7 @@ import com.xs.newsapp.feature.feed.FeedScreen
 import com.xs.newsapp.feature.profile.ProfileScreen
 import com.xs.newsapp.feature.publish.PublishScreen
 
-/** The logged-in flow: a bottom navigation bar with one back stack per tab. */
+/** Logged-in flow: one back stack per tab. */
 @Composable
 fun MainNavigation(modifier: Modifier = Modifier) {
     val navigationState = rememberNavigationState(startRoute = FeedRoute, topLevelRoutes = TopLevelRoutes)
@@ -48,7 +48,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
     }
 }
 
-/** The logged-in frame: the current screen above the bottom navigation bar. Stateless, so it can be previewed. */
+/** The screen above the bottom bar. Stateless, for previews. */
 @Composable
 fun MainScaffold(
     selectedTab: NavKey,
@@ -58,7 +58,7 @@ fun MainScaffold(
 ) {
     Scaffold(
         modifier = modifier,
-        // No insets here: every screen handles its own, and the bar pads itself for the navigation bar.
+        // Screens and the bar handle their own insets.
         contentWindowInsets = WindowInsets(0.dp),
         bottomBar = {
             NavigationBar {
@@ -83,7 +83,7 @@ fun MainScaffold(
             Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                // The bar already covers the navigation bar inset, so screens must not add it again.
+                // The bar already covers the navigation bar inset.
                 .consumeWindowInsets(innerPadding),
         ) {
             content()

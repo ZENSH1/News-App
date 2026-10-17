@@ -7,14 +7,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** Store of the app shell. It has no effects: every change it makes is visible in [AppState]. */
 @HiltViewModel
 class AppViewModel @Inject constructor(
     authRepository: AuthRepository,
 ) : MviViewModel<AppState, AppIntent, AppMutation, Nothing>(AppState(), AppReducer) {
 
     init {
-        // Not every mutation comes from an intent: data streams feed the reducer too.
+        // Mutations can come from data streams, not just intents.
         viewModelScope.launch {
             authRepository.session.collect { session -> mutate(AppMutation.SessionChanged(session)) }
         }

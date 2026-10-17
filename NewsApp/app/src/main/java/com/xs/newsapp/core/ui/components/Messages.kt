@@ -9,7 +9,7 @@ import com.xs.newsapp.core.validation.FieldError
 import com.xs.newsapp.core.validation.Validation
 import com.xs.newsapp.data.model.BackendError
 
-// Stores and reducers speak in error *types*; turning them into words is the View's job.
+// Error types to text: the View's job.
 
 @StringRes
 fun BackendError.messageRes(): Int = when (this) {

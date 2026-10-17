@@ -8,12 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * The mock flavor's "server": accounts, profiles and stories kept in memory and shared by the
- * fake repositories, seeded with demo content. Everything resets when the process dies.
- *
- * Demo login: demo@newsapp.test / password
- */
+/** The mock flavor's in-memory "server", seeded with demo data. Login: demo@newsapp.test / password */
 @Singleton
 class InMemoryBackend @Inject constructor() {
 

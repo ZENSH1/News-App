@@ -30,10 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.xs.newsapp.R
 
-/**
- * Shared layout of the login and sign-up screens: the marble background, and a centered card that
- * scrolls when the keyboard (IME) takes space. Insets come from [WindowInsets.safeDrawing].
- */
+/** Login and sign-up layout: background image and a centered card that scrolls above the keyboard. */
 @Composable
 fun AuthScaffold(
     title: String,
@@ -48,7 +45,6 @@ fun AuthScaffold(
         contentWindowInsets = WindowInsets.safeDrawing,
     ) { innerPadding ->
         Box(Modifier.fillMaxSize()) {
-            // Drawn edge to edge, behind the system bars.
             Image(
                 painter = painterResource(R.drawable.auth_background),
                 contentDescription = null,
@@ -64,7 +60,7 @@ fun AuthScaffold(
                 Column(
                     modifier = Modifier
                         .verticalScroll(rememberScrollState())
-                        // At least as tall as the screen, so the card is centered until it needs to scroll.
+                        // Centered until it needs to scroll.
                         .heightIn(min = maxHeight)
                         .fillMaxWidth()
                         .padding(24.dp),

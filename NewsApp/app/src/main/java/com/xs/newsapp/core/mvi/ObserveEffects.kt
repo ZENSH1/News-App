@@ -11,12 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-/**
- * Collects a store's one-off [effects] while the screen is at least STARTED.
- *
- * `Dispatchers.Main.immediate` hands each effect over in the same frame it is received, so an
- * effect cannot be lost between "received from the channel" and "handled" when the screen stops.
- */
+/** Collects [effects] while STARTED. `Main.immediate` so none is lost when the screen stops. */
 @Composable
 fun <E> ObserveEffects(effects: Flow<E>, onEffect: (E) -> Unit) {
     val lifecycleOwner = LocalLifecycleOwner.current

@@ -22,7 +22,6 @@ fun LoadingContent(modifier: Modifier = Modifier) {
     }
 }
 
-/** A centered message with an optional action, for empty and error states. */
 @Composable
 fun MessageContent(
     message: String,

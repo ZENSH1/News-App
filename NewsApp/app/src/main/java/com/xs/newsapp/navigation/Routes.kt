@@ -13,24 +13,21 @@ import androidx.navigation3.runtime.NavKey
 import com.xs.newsapp.R
 import kotlinx.serialization.Serializable
 
-// Navigation 3 keys. @Serializable lets the back stacks survive configuration changes and process death.
+// Navigation 3 keys; @Serializable so back stacks survive process death.
 
-// Logged-out flow
 @Serializable data object LoginRoute : NavKey
 
 @Serializable data object SignUpRoute : NavKey
 
-// Logged-in flow: three tabs, each with its own back stack…
 @Serializable data object FeedRoute : NavKey
 
 @Serializable data object PublishRoute : NavKey
 
 @Serializable data object ProfileRoute : NavKey
 
-// …and a screen pushed on top of the Profile tab.
 @Serializable data object EditProfileRoute : NavKey
 
-/** The tabs of the bottom navigation bar. The first one is where the user exits the app from. */
+/** Bottom bar tabs. */
 enum class TopLevelDestination(
     val route: NavKey,
     val selectedIcon: ImageVector,

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-/** `prod` flavor: the "Users" collection in Cloud Firestore, one document per user id. */
+/** Firestore "Users", one document per user id. */
 class FirestoreProfileRepository @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth,
@@ -37,7 +37,7 @@ class FirestoreProfileRepository @Inject constructor(
             firestore.collection(FirestoreCollections.USERS).document(userId)
                 .set(mapOf("name" to name, "age" to (age?.toString() ?: "")), SetOptions.merge())
                 .await()
-            // Keep the login's display name (used for new bylines) in sync.
+            // Keep the display name in sync.
             val currentUser = auth.currentUser
             if (currentUser != null && currentUser.uid == userId) {
                 currentUser.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build()).await()

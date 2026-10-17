@@ -2,7 +2,7 @@ package com.xs.newsapp.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// "News App blue" brand palette (Material 3 tonal values built around the original #00008B).
+// Brand blues, built around #00008B.
 internal val BluePrimaryLight = Color(0xFF2B3FA8)
 internal val BlueOnPrimaryLight = Color(0xFFFFFFFF)
 internal val BluePrimaryContainerLight = Color(0xFFDEE0FF)

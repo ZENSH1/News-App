@@ -135,7 +135,7 @@ fun ProfileContent(
         }
     }
 
-    // A dialog is just more state: it is open exactly while articlePendingDeletion is set.
+    // The dialog is state.
     state.articlePendingDeletion?.let { article ->
         AlertDialog(
             onDismissRequest = { onIntent(ProfileIntent.DeleteDismissed) },

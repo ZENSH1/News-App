@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 private val Default = Typography()
 
-// Material 3 type scale; headlines use a serif face for a "newspaper" feel.
+// Serif headlines.
 val Typography = Typography(
     headlineLarge = Default.headlineLarge.copy(fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold),
     headlineMedium = Default.headlineMedium.copy(fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold),

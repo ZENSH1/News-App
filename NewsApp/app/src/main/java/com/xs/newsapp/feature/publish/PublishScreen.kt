@@ -71,7 +71,7 @@ fun PublishContent(
         modifier = modifier,
         topBar = { CenterAlignedTopAppBar(title = { Text(stringResource(R.string.publish_title)) }) },
         snackbarHost = { SnackbarHost(snackbarHostState) },
-        // Includes the keyboard, so the form scrolls above it instead of hiding behind it.
+        // Includes the keyboard.
         contentWindowInsets = WindowInsets.safeDrawing,
     ) { innerPadding ->
         Column(

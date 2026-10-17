@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/** `prod` flavor: Firebase Authentication. A new account also gets a document in the Users collection. */
+/** Firebase Auth; new accounts also get a Users document. */
 @Singleton
 class FirebaseAuthRepository @Inject constructor(
     private val auth: FirebaseAuth,
@@ -30,7 +30,7 @@ class FirebaseAuthRepository @Inject constructor(
     override val session: Flow<Session> = _session.asStateFlow()
 
     init {
-        // Lives as long as the process (this is a singleton), so the listener is never removed.
+        // Singleton, so the listener is never removed.
         auth.addAuthStateListener { firebaseAuth -> _session.value = firebaseAuth.currentUser.toSession() }
     }
 
@@ -42,8 +42,7 @@ class FirebaseAuthRepository @Inject constructor(
         firebaseCall {
             val user = auth.createUserWithEmailAndPassword(email, password).await().user
                 ?: throw BackendException(BackendError.Unknown)
-            // From here on the user is signed in, so the app shell may already be closing the sign-up
-            // screen (and cancelling its store). Finish setting up the account regardless.
+            // The user is signed in now and the sign-up screen may close; finish setup anyway.
             withContext(NonCancellable) {
                 user.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build()).await()
                 firestore.collection(FirestoreCollections.USERS).document(user.uid).set(
@@ -54,7 +53,7 @@ class FirebaseAuthRepository @Inject constructor(
                         "age" to "",
                     ),
                 ).await()
-                // The auth state listener fired before the display name was set, so publish it now.
+                // The listener fired before the name was set.
                 _session.value = Session.SignedIn(User(user.uid, name, email))
             }
         }

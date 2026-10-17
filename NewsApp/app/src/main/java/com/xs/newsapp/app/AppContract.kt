@@ -3,10 +3,7 @@ package com.xs.newsapp.app
 import com.xs.newsapp.core.mvi.Reducer
 import com.xs.newsapp.data.model.Session
 
-/**
- * MVI contract of the app shell. Its only job is to decide which part of the app is shown,
- * so navigation between "logged out" and "logged in" is just a function of state.
- */
+/** App shell: which part of the app is shown is a function of state. */
 data class AppState(
     val splashFinished: Boolean = false,
     val session: Session = Session.Unknown,

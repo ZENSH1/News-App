@@ -9,7 +9,7 @@ data class EditProfileState(
     val isLoading: Boolean = true,
     val email: String = "",
     val name: String = "",
-    /** Kept as text so the field shows exactly what was typed; parsed on save. */
+    /** Raw text; parsed on save. */
     val age: String = "",
     val isSaving: Boolean = false,
     val nameError: FieldError? = null,
@@ -49,7 +49,6 @@ object EditProfileReducer : Reducer<EditProfileState, EditProfileMutation> {
             age = mutation.profile.age?.toString().orEmpty(),
         )
         is EditProfileMutation.NameUpdated -> state.copy(name = mutation.name, nameError = null)
-        // Input sanitising is pure too: the reducer keeps only digits.
         is EditProfileMutation.AgeUpdated -> state.copy(
             age = mutation.age.filter(Char::isDigit).take(MAX_AGE_DIGITS),
             ageError = null,

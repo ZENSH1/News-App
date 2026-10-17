@@ -18,15 +18,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 
-// Hand-written fakes instead of mocks: they behave like a tiny backend, record what they were
-// asked to do, and can be told to fail or to hold a call open (via a gate) to observe in-flight state.
+// Fakes that record calls and can fail or hold a call open (gate).
 
-/** Shared knobs for the fakes below. */
 abstract class ControllableFake {
-    /** When set, calls fail with this error. */
     var failure: BackendError? = null
 
-    /** When set, calls suspend until it is completed. */
+    /** Holds calls open until completed. */
     var gate: CompletableDeferred<Unit>? = null
 
     protected suspend fun respond() {
@@ -74,7 +71,6 @@ class TestNewsRepository(vararg articles: Article) : ControllableFake(), NewsRep
 
     private val articles = MutableStateFlow(articles.toList())
 
-    /** When set, observing fails with this error. */
     var observeFailure: BackendError? = null
 
     val publications = mutableListOf<Publication>()
@@ -109,7 +105,6 @@ class TestProfileRepository(vararg profiles: UserProfile) : ControllableFake(), 
 
     private val profiles = MutableStateFlow(profiles.associateBy { it.userId })
 
-    /** When set, observing fails with this error. */
     var observeFailure: BackendError? = null
 
     val updates = mutableListOf<Update>()

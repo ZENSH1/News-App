@@ -9,10 +9,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
-/**
- * Replaces `Dispatchers.Main` (used by `viewModelScope`) with a test dispatcher. `runTest` shares
- * its scheduler, so stores and tests run on one virtual clock.
- */
+/** Swaps `Dispatchers.Main` (used by `viewModelScope`) for a test dispatcher. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainDispatcherRule(
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),

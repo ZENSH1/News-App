@@ -27,7 +27,7 @@ class EditProfileViewModel @Inject constructor(
     private var user: User? = null
 
     init {
-        // Load once: from here on the form belongs to the user, live updates would overwrite typing.
+        // Load once so live updates don't overwrite typing.
         viewModelScope.launch {
             val signedInUser = authRepository.session.filterIsInstance<Session.SignedIn>().first().user
             user = signedInUser
@@ -66,7 +66,6 @@ class EditProfileViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 profileRepository.updateProfile(user.id, state.name.trim(), state.age.toIntOrNull())
-                // The profile screen observes the repository, so it is already up to date.
                 sendEffect(EditProfileEffect.NavigateBack)
             } catch (e: BackendException) {
                 sendEffect(EditProfileEffect.ShowError(e.error))

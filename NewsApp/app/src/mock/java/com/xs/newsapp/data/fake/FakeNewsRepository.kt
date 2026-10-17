@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.update
 import java.util.UUID
 import javax.inject.Inject
 
-/** Mock flavor: stories live in [InMemoryBackend] and every change is pushed to observers, like Firestore. */
 class FakeNewsRepository @Inject constructor(
     private val backend: InMemoryBackend,
 ) : NewsRepository {

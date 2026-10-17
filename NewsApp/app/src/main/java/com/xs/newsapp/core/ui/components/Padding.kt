@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 
-/** These paddings (usually a Scaffold's insets) plus [extra] on every side, e.g. for a list's contentPadding. */
+/** Adds [extra] on every side. */
 @Composable
 fun PaddingValues.plusAll(extra: Dp): PaddingValues {
     val layoutDirection = LocalLayoutDirection.current

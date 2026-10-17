@@ -27,13 +27,12 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-/** Creates the date formatter once per screen instead of once per list item. */
+/** One per screen, not per item. */
 @Composable
 fun rememberArticleDateFormatter(): DateTimeFormatter = remember {
     DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT).withZone(ZoneId.systemDefault())
 }
 
-/** One story. Shows a delete button when [onDelete] is given (the author's own stories). */
 @Composable
 fun ArticleCard(
     article: Article,

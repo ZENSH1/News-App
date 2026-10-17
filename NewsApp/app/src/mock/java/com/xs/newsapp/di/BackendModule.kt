@@ -11,7 +11,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-/** `mock` flavor: the stores talk to an in-memory backend. Swap the flavor, not the code. */
+/** `mock` flavor: in-memory backend. */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class BackendModule {

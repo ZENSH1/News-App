@@ -22,7 +22,7 @@ sealed interface FeedMutation {
 
 object FeedReducer : Reducer<FeedState, FeedMutation> {
     override fun reduce(state: FeedState, mutation: FeedMutation): FeedState = when (mutation) {
-        // Keep showing what we have while reloading; only the spinner and error change.
+        // Keep the current list while reloading.
         FeedMutation.LoadingStarted -> state.copy(isLoading = true, error = null)
         is FeedMutation.ArticlesLoaded -> FeedState(isLoading = false, articles = mutation.articles)
         is FeedMutation.LoadingFailed -> state.copy(isLoading = false, error = mutation.error)

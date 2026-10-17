@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/** The feed has no effects: loading, content and errors are all part of [FeedState]. */
+/** No effects: everything is in [FeedState]. */
 @HiltViewModel
 class FeedViewModel @Inject constructor(
     private val newsRepository: NewsRepository,
@@ -28,7 +28,6 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    /** Subscribes to the real-time list. Every new snapshot becomes an [FeedMutation.ArticlesLoaded]. */
     private fun observeArticles() {
         observeJob?.cancel()
         mutate(FeedMutation.LoadingStarted)

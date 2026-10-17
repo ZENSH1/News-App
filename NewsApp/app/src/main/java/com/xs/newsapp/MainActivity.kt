@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            // The bottom navigation bar draws its own background down to the screen edge.
+            // The bottom bar draws its own background.
             window.isNavigationBarContrastEnforced = false
         }
         setContent {

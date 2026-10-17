@@ -45,7 +45,6 @@ class SignUpViewModel @Inject constructor(
         mutate(SignUpMutation.SubmissionStarted)
         viewModelScope.launch {
             try {
-                // Success signs the user in; the app shell reacts to the new session.
                 authRepository.signUp(state.name.trim(), state.email.trim(), state.password)
             } catch (e: BackendException) {
                 sendEffect(SignUpEffect.ShowError(e.error))

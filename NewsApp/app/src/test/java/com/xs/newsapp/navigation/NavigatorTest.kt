@@ -6,7 +6,6 @@ import androidx.navigation3.runtime.NavKey
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/** Navigation state is plain state too, so the tab logic is tested without any UI. */
 class NavigatorTest {
 
     private val state = NavigationState(

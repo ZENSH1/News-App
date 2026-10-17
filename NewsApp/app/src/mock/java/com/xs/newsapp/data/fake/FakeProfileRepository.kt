@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-/** Mock flavor: profiles live in [InMemoryBackend]. */
 class FakeProfileRepository @Inject constructor(
     private val backend: InMemoryBackend,
 ) : ProfileRepository {
@@ -22,7 +21,7 @@ class FakeProfileRepository @Inject constructor(
         delay(NETWORK_LATENCY_MILLIS)
         val profile = backend.profiles.value[userId] ?: throw BackendException(BackendError.NotFound)
         backend.profiles.update { it + (userId to profile.copy(name = name, age = age)) }
-        // Keep the login's display name in sync, like Firebase's updateProfile(displayName).
+        // Sync the display name, like Firebase does.
         backend.accounts.update { accounts ->
             accounts.map { if (it.user.id == userId) it.copy(user = it.user.copy(name = name)) else it }
         }

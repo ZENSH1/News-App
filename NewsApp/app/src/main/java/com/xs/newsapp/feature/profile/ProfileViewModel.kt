@@ -45,10 +45,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    /**
-     * The profile and the user's own stories, re-derived whenever the signed-in user changes,
-     * so this store never shows stale data from a previous account.
-     */
+    /** Re-derived when the user changes, so a previous account's data never shows. */
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun loadedProfiles(): Flow<ProfileMutation> = authRepository.session
         .filterIsInstance<Session.SignedIn>()
@@ -85,7 +82,6 @@ class ProfileViewModel @Inject constructor(
         mutate(ProfileMutation.SignOutStarted)
         viewModelScope.launch {
             try {
-                // The session becomes SignedOut and the app shell shows the login screen.
                 authRepository.signOut()
             } catch (e: BackendException) {
                 mutate(ProfileMutation.SignOutFailed)

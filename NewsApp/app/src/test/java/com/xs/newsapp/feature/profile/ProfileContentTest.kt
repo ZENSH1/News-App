@@ -22,7 +22,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/** In MVI a dialog is state: it is on screen exactly while [ProfileState.articlePendingDeletion] is set. */
+/** The dialog is state: shown while [ProfileState.articlePendingDeletion] is set. */
 @RunWith(AndroidJUnit4::class)
 class ProfileContentTest {
 

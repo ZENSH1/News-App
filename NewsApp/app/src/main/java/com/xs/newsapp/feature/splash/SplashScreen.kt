@@ -27,12 +27,7 @@ import kotlinx.coroutines.delay
 private const val ANIMATION_START_DELAY_MILLIS = 300L
 private const val ANIMATION_AND_HOLD_MILLIS = 1_900L
 
-/**
- * Plays the lion-to-name logo animation, then reports [onFinished].
- *
- * The animation is pure presentation, so its timing lives in the View. Where to go afterwards is
- * decided by the app shell's store from [com.xs.newsapp.app.AppState].
- */
+/** Plays the logo animation, then calls [onFinished]. Where to go next is up to [com.xs.newsapp.app.AppState]. */
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun SplashScreen(onFinished: () -> Unit, modifier: Modifier = Modifier) {
@@ -50,7 +45,7 @@ fun SplashScreen(onFinished: () -> Unit, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            // The logo artwork is drawn for a white background, in light and dark theme alike.
+            // The logo is drawn for white, even in dark theme.
             .background(Color.White),
         contentAlignment = Alignment.Center,
     ) {

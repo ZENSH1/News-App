@@ -1,6 +1,5 @@
 package com.xs.newsapp.core.validation
 
-/** Problems a form field can have. Screens map them to text; stores and reducers only see these. */
 enum class FieldError {
     Blank,
     InvalidEmail,
@@ -10,7 +9,7 @@ enum class FieldError {
     TooLong,
 }
 
-/** Pure input rules shared by several screens. No Android dependencies, so they are trivially testable. */
+/** Pure input rules. */
 object Validation {
 
     const val MIN_PASSWORD_LENGTH = 6
@@ -29,7 +28,7 @@ object Validation {
         else -> null
     }
 
-    /** At sign-in any non-empty password may be right; the backend decides. */
+    /** The backend decides at sign-in. */
     fun existingPassword(value: String): FieldError? = if (value.isEmpty()) FieldError.Blank else null
 
     fun newPassword(value: String): FieldError? = when {
@@ -50,7 +49,7 @@ object Validation {
         else -> null
     }
 
-    /** Age is optional: blank is fine, otherwise it must be a whole number in range. */
+    /** Optional. */
     fun optionalAge(value: String): FieldError? {
         if (value.isBlank()) return null
         val age = value.trim().toIntOrNull() ?: return FieldError.InvalidAge

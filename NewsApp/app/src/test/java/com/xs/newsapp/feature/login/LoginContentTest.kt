@@ -19,10 +19,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/**
- * The View is a function of [LoginState]: feed it a state, check what it shows, and check which
- * [LoginIntent]s it sends. No store, no backend. Runs on the JVM via Robolectric.
- */
+/** Feeds the View a [LoginState] and checks the [LoginIntent]s it sends. Robolectric. */
 @RunWith(AndroidJUnit4::class)
 class LoginContentTest {
 

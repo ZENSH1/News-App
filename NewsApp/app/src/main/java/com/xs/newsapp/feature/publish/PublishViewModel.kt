@@ -45,7 +45,7 @@ class PublishViewModel @Inject constructor(
             try {
                 val user = (authRepository.session.first() as? Session.SignedIn)?.user
                     ?: throw BackendException(BackendError.PermissionDenied)
-                // The byline uses the profile name, which the user can edit, when there is one.
+                // Byline: the editable profile name, if any.
                 val profileName = profileRepository.observeProfile(user.id).first()?.name
                 val author = if (profileName.isNullOrBlank()) user else user.copy(name = profileName)
                 newsRepository.publish(state.headline.trim(), state.description.trim(), author)

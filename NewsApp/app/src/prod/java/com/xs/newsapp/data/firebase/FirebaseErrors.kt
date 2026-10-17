@@ -11,7 +11,7 @@ import com.xs.newsapp.data.model.BackendError
 import com.xs.newsapp.data.model.BackendException
 import kotlin.coroutines.cancellation.CancellationException
 
-/** Runs a Firebase call and translates its exceptions into [BackendException]. */
+/** Maps Firebase exceptions to [BackendException]. */
 internal suspend fun <T> firebaseCall(block: suspend () -> T): T = try {
     block()
 } catch (e: CancellationException) {
@@ -23,7 +23,7 @@ internal suspend fun <T> firebaseCall(block: suspend () -> T): T = try {
 }
 
 internal fun Exception.toBackendError(): BackendError = when (this) {
-    // WeakPassword is a subclass of InvalidCredentials, so it must be checked first.
+    // Subclass of InvalidCredentials: check first.
     is FirebaseAuthWeakPasswordException -> BackendError.WeakPassword
     is FirebaseAuthInvalidCredentialsException, is FirebaseAuthInvalidUserException -> BackendError.InvalidCredentials
     is FirebaseAuthUserCollisionException -> BackendError.EmailAlreadyInUse
@@ -39,7 +39,7 @@ internal fun Exception.toBackendError(): BackendError = when (this) {
     else -> BackendError.Unknown
 }
 
-/** Reads a field without throwing when an older document stored it with a different type. */
+/** Tolerates old documents that stored another type. */
 internal fun DocumentSnapshot.stringField(field: String): String? = get(field) as? String
 
 internal fun DocumentSnapshot.longField(field: String): Long? = when (val value = get(field)) {

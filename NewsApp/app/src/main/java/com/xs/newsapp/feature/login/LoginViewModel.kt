@@ -38,8 +38,7 @@ class LoginViewModel @Inject constructor(
         mutate(LoginMutation.SubmissionStarted)
         viewModelScope.launch {
             try {
-                // On success there is nothing to do here: the session changes and the app shell
-                // (AppViewModel) switches to the logged-in screens.
+                // On success the session changes and the app shell takes over.
                 authRepository.signIn(state.email.trim(), state.password)
             } catch (e: BackendException) {
                 sendEffect(LoginEffect.ShowError(e.error))

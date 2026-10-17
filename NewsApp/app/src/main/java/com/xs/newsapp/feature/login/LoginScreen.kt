@@ -35,10 +35,7 @@ import com.xs.newsapp.core.ui.theme.NewsTheme
 import com.xs.newsapp.core.validation.FieldError
 import kotlinx.coroutines.launch
 
-/**
- * Connects the login View to its store: renders [LoginViewModel.state], turns effects into
- * navigation and snackbars, and sends every user action back as a [LoginIntent].
- */
+/** Binds [LoginContent] to its store: renders state, handles effects, sends intents. */
 @Composable
 fun LoginScreen(
     onNavigateToSignUp: () -> Unit,
@@ -61,7 +58,6 @@ fun LoginScreen(
     LoginContent(state = state, onIntent = viewModel::onIntent, snackbarHostState = snackbarHostState)
 }
 
-/** The View: a pure function of [LoginState] that reports what the user does as [LoginIntent]s. */
 @Composable
 fun LoginContent(
     state: LoginState,

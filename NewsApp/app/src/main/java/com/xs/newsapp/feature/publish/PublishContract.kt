@@ -42,9 +42,7 @@ object PublishReducer : Reducer<PublishState, PublishMutation> {
             descriptionError = mutation.descriptionError,
         )
         PublishMutation.PublishStarted -> state.copy(isPublishing = true)
-        // A published story leaves an empty form behind, ready for the next one.
         PublishMutation.PublishSucceeded -> PublishState()
-        // A failure keeps everything the user typed.
         PublishMutation.PublishFailed -> state.copy(isPublishing = false)
     }
 }

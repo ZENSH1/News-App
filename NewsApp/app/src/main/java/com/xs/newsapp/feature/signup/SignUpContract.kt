@@ -55,7 +55,7 @@ object SignUpReducer : Reducer<SignUpState, SignUpMutation> {
             state.copy(name = mutation.name, errors = state.errors.copy(name = null))
         is SignUpMutation.EmailUpdated ->
             state.copy(email = mutation.email, errors = state.errors.copy(email = null))
-        // Changing the password also invalidates a "passwords don't match" error.
+        // Also clears "passwords don't match".
         is SignUpMutation.PasswordUpdated ->
             state.copy(password = mutation.password, errors = state.errors.copy(password = null, confirmPassword = null))
         is SignUpMutation.ConfirmPasswordUpdated ->

@@ -26,7 +26,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.xs.newsapp.R
 
-/** A labelled text field that shows [error] (or [supportingText]) underneath. */
 @Composable
 fun FormTextField(
     value: String,
@@ -59,7 +58,7 @@ fun FormTextField(
     )
 }
 
-/** A password field with a show/hide toggle. Visibility is passed in, so it can live in MVI state. */
+/** Visibility is passed in so it lives in MVI state. */
 @Composable
 fun PasswordTextField(
     value: String,
@@ -99,7 +98,6 @@ fun PasswordTextField(
     )
 }
 
-/** A full-width button that swaps its label for a spinner while [isLoading]. */
 @Composable
 fun LoadingButton(
     text: String,

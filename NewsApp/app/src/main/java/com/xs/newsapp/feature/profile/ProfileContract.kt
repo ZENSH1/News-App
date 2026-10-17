@@ -8,10 +8,9 @@ import com.xs.newsapp.data.model.UserProfile
 data class ProfileState(
     val isLoading: Boolean = true,
     val profile: UserProfile? = null,
-    /** Only the signed-in user's own stories. */
     val articles: List<Article> = emptyList(),
     val error: BackendError? = null,
-    /** Non-null while the "delete this story?" dialog is open. A dialog is state, not an effect. */
+    /** Set while the delete dialog is open. */
     val articlePendingDeletion: Article? = null,
     val isDeleting: Boolean = false,
     val isSigningOut: Boolean = false,

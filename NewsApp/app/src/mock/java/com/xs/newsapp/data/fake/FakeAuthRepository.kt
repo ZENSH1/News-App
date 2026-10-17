@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.update
 import java.util.UUID
 import javax.inject.Inject
 
-/** Mock flavor: accounts live in [InMemoryBackend]. Behaves like the real backend, errors included. */
 class FakeAuthRepository @Inject constructor(
     private val backend: InMemoryBackend,
 ) : AuthRepository {

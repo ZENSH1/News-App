@@ -9,7 +9,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
-/** The app shell decides which flow is shown purely from its state: splash, logged out or logged in. */
 class AppViewModelTest {
 
     @get:Rule

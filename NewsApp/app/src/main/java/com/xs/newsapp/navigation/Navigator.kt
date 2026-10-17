@@ -2,23 +2,20 @@ package com.xs.newsapp.navigation
 
 import androidx.navigation3.runtime.NavKey
 
-/**
- * Handles navigation events by updating [NavigationState]. Screens never touch back stacks
- * directly; they call these methods (usually in response to an MVI effect).
- */
+/** The only thing that changes [NavigationState]. */
 class Navigator(val state: NavigationState) {
 
     fun navigate(route: NavKey) {
         if (route in state.backStacks.keys) {
             if (route == state.topLevelRoute) {
-                // Re-selecting the current tab goes back to its first screen.
+                // Reselecting a tab pops it to its root.
                 state.backStacks.getValue(route).popToRoot()
             } else {
                 state.topLevelRoute = route
             }
         } else {
             val stack = state.backStacks.getValue(state.topLevelRoute)
-            // Ignore double taps that would push the same screen twice.
+            // Ignore double taps.
             if (stack.lastOrNull() != route) stack.add(route)
         }
     }
@@ -26,7 +23,6 @@ class Navigator(val state: NavigationState) {
     fun goBack() {
         val currentStack = state.backStacks.getValue(state.topLevelRoute)
         if (currentStack.last() == state.topLevelRoute) {
-            // At the root of a tab: go back to the start tab.
             state.topLevelRoute = state.startRoute
         } else {
             currentStack.removeAt(currentStack.lastIndex)

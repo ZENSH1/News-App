@@ -13,9 +13,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        // The app's permanent identity on devices, Google Play and Firebase (it must match the package
-        // registered in google-services.json), so it keeps its original value. To change it, register
-        // the new package in the Firebase console and replace app/google-services.json.
+        // Must match google-services.json, so it keeps the old name.
         applicationId = "com.xs.firenotesapp"
         minSdk = 28
         targetSdk = 37
@@ -25,9 +23,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // Two backends behind the same repositories. Pick one with the "Build Variants" panel.
-    //  - mock: in-memory fake backend with demo data (default). No Firebase project needed.
-    //  - prod: Firebase Authentication + Cloud Firestore (uses app/google-services.json).
+    // mock: in-memory demo backend (default). prod: Firebase.
     flavorDimensions += "backend"
     productFlavors {
         create("mock") {
@@ -60,11 +56,10 @@ android {
     }
 
     testOptions {
-        // Lets Robolectric-backed Compose UI tests in src/test read app resources.
+        // For Robolectric.
         unitTests.isIncludeAndroidResources = true
     }
 
-    // Screenshot tests: previews in src/screenshotTest, rendered on the JVM (see README).
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
@@ -84,11 +79,11 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // MVI stores are ViewModels; collect their state lifecycle-aware
+    // Lifecycle / ViewModel
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    // Navigation 3 (+ per-destination ViewModels), keys are @Serializable
+    // Navigation 3
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
@@ -99,13 +94,13 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
-    // Firebase backend, only compiled into the `prod` flavor.
+    // prod flavor: Firebase
     "prodImplementation"(platform(libs.firebase.bom))
     "prodImplementation"(libs.firebase.auth)
     "prodImplementation"(libs.firebase.firestore)
     "prodImplementation"(libs.kotlinx.coroutines.play.services)
 
-    // Local (JVM) tests: reducers, stores, navigation, and Robolectric-backed screen tests.
+    // JVM tests
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
@@ -115,7 +110,7 @@ dependencies {
     testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.androidx.compose.ui.test.junit4)
 
-    // Screenshot tests (Compose Preview Screenshot Testing)
+    // Screenshot tests
     screenshotTestImplementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }

@@ -15,7 +15,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
-/** Store tests: send intents, then check the resulting state, effects and backend calls. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class LoginViewModelTest {
 

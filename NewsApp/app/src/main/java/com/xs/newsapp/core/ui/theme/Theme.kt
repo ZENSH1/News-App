@@ -34,10 +34,7 @@ private val DarkColors = darkColorScheme(
     surface = BlueBackgroundDark,
 )
 
-/**
- * The app theme. Brand colors by default; pass `dynamicColor = true` to follow the wallpaper
- * on Android 12+. System bar icon colors are handled by `enableEdgeToEdge()` in the Activity.
- */
+/** Brand colors; `dynamicColor` follows the wallpaper on Android 12+. */
 @Composable
 fun NewsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

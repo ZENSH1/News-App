@@ -32,11 +32,8 @@ import com.xs.newsapp.navigation.PublishRoute
 import java.util.Locale
 import java.util.TimeZone
 
-// Screenshot tests. Each @PreviewTest is rendered on the JVM and compared with its reference image
-// in src/screenshotTestMockDebug/reference (the README shows those images).
-//   ./gradlew :app:updateMockDebugScreenshotTest     record new reference images
-//   ./gradlew :app:validateMockDebugScreenshotTest   compare against them
-// In MVI a screen is a function of its state, so each screenshot is just a state.
+// Screenshot tests; references in src/screenshotTestMockDebug (used by the README).
+// Record: ./gradlew :app:updateMockDebugScreenshotTest  Check: validateMockDebugScreenshotTest
 
 @PreviewTest
 @Preview(showSystemUi = true, device = Devices.PIXEL_7)
@@ -141,7 +138,7 @@ fun EditProfileScreenshot() = Screenshot {
 
 @Composable
 private fun Screenshot(content: @Composable () -> Unit) {
-    // Reference images must not depend on the time zone or language of the machine rendering them.
+    // Same output on every machine.
     remember {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
         Locale.setDefault(Locale.US)
