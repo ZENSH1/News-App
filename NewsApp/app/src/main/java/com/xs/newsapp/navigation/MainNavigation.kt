@@ -1,7 +1,9 @@
 package com.xs.newsapp.navigation
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -34,6 +36,26 @@ fun MainNavigation(modifier: Modifier = Modifier) {
         entry<EditProfileRoute> { EditProfileScreen(onNavigateBack = navigator::goBack) }
     }
 
+    MainScaffold(
+        selectedTab = navigationState.topLevelRoute,
+        onTabSelected = navigator::navigate,
+        modifier = modifier,
+    ) {
+        NavDisplay(
+            entries = navigationState.toDecoratedEntries(entryProvider),
+            onBack = navigator::goBack,
+        )
+    }
+}
+
+/** The logged-in frame: the current screen above the bottom navigation bar. Stateless, so it can be previewed. */
+@Composable
+fun MainScaffold(
+    selectedTab: NavKey,
+    onTabSelected: (NavKey) -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
     Scaffold(
         modifier = modifier,
         // No insets here: every screen handles its own, and the bar pads itself for the navigation bar.
@@ -41,10 +63,10 @@ fun MainNavigation(modifier: Modifier = Modifier) {
         bottomBar = {
             NavigationBar {
                 TopLevelDestination.entries.forEach { destination ->
-                    val selected = destination.route == navigationState.topLevelRoute
+                    val selected = destination.route == selectedTab
                     NavigationBarItem(
                         selected = selected,
-                        onClick = { navigator.navigate(destination.route) },
+                        onClick = { onTabSelected(destination.route) },
                         icon = {
                             Icon(
                                 imageVector = if (selected) destination.selectedIcon else destination.unselectedIcon,
@@ -57,13 +79,14 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             }
         },
     ) { innerPadding ->
-        NavDisplay(
-            entries = navigationState.toDecoratedEntries(entryProvider),
-            onBack = navigator::goBack,
-            modifier = Modifier
+        Box(
+            Modifier
+                .fillMaxSize()
                 .padding(innerPadding)
                 // The bar already covers the navigation bar inset, so screens must not add it again.
                 .consumeWindowInsets(innerPadding),
-        )
+        ) {
+            content()
+        }
     }
 }

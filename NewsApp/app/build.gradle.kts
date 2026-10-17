@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.screenshot)
 }
 
 android {
@@ -62,6 +63,9 @@ android {
         // Lets Robolectric-backed Compose UI tests in src/test read app resources.
         unitTests.isIncludeAndroidResources = true
     }
+
+    // Screenshot tests: previews in src/screenshotTest, rendered on the JVM (see README).
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 dependencies {
@@ -110,4 +114,8 @@ dependencies {
     testImplementation(libs.androidx.test.ext.junit)
     testImplementation(platform(libs.androidx.compose.bom))
     testImplementation(libs.androidx.compose.ui.test.junit4)
+
+    // Screenshot tests (Compose Preview Screenshot Testing)
+    screenshotTestImplementation(libs.screenshot.validation.api)
+    screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
